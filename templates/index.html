@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Caption Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="page-content">
+        <section class="hero" aria-labelledby="pageTitle">
+            <h1 id="pageTitle">Image Caption <span>Generator AI</span></h1>
+            <p>Upload an image and generate a short, descriptive caption.</p>
+        </section>
+
+        <form class="caption-form" id="uploadForm" action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <div class="upload-zone" id="dropZone" tabindex="0" role="button" aria-label="Choose an image or drop one here">
+                <input id="imageInput" name="image" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                <div class="empty-upload" id="emptyUpload">
+                    <span class="upload-arrow" aria-hidden="true">&#8593;</span>
+                    <span class="upload-title">Drag and drop an image here</span>
+                    <span class="upload-or">or</span>
+                    <button class="choose-button" type="button" id="chooseButton">Choose File</button>
+                </div>
+                <div class="selected-upload" id="selectedUpload" hidden>
+                    <img id="imagePreview" alt="Selected image preview">
+                    <button class="remove-button" type="button" id="removeButton" aria-label="Remove selected image">&times;</button>
+                </div>
+            </div>
+            <p class="file-hint">JPG, JPEG, PNG, WebP <span aria-hidden="true">&middot;</span> Max size: 16MB</p>
+            <button class="generate-button" type="submit" id="generateButton" disabled>Generate Caption</button>
+            <p class="status-message" id="statusMessage" role="alert" hidden></p>
+        </form>
+
+        <section class="caption-section" aria-labelledby="captionTitle">
+            <h2 id="captionTitle">Generated Caption</h2>
+            <div class="caption-box" id="captionBox">Your caption will appear here...</div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
