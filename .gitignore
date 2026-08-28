@@ -8,5 +8,8 @@ venv/
 static/uploads/*
 !static/uploads/.gitkeep
 
+# Dataset images
+data/Images/
+
 # Local training cache
 features.pkl
